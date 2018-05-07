@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public class GlobeSortServer {
     private Server server;
@@ -90,13 +91,15 @@ public class GlobeSortServer {
             Integer[] values = req.getValuesList().toArray(new Integer[req.getValuesList().size()]);
 			
             Arrays.sort(values);
-			ArrayList<Integer> al = new ArrayList<Integer>(Arrays.asList(Array));
-			al.add(new Integer((int)(System.CurrentTimeMillis() - start));
-			values = al.toArray();
+			/*ArrayList<Integer> al = new ArrayList<Integer>(Arrays.asList(values));
+			al.add(new Integer((int)(System.currentTimeMillis() - start)));
+			Integer[] values2 = al.toArray(new Integer[al.size()]);
+			*/
             IntArray.Builder responseBuilder = IntArray.newBuilder();
             for(Integer val : values) {
                 responseBuilder.addValues(val);
             }
+			responseBuilder.addValues(new Integer((int)(System.currentTimeMillis() - start)));
             IntArray response = responseBuilder.build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();

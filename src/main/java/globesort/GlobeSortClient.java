@@ -54,9 +54,9 @@ public class GlobeSortClient {
 		long total_time = end-start;
 		System.out.println("Total sort time (ms): " + total_time);
 		Integer[] out = response.getValuesList().toArray(new Integer[response.getValuesList().size()]);
-		System.out.println("Server time (ms): " + out[out.size()-1]);
-		System.out.println("App Through: " + out.size()-1/out[out.size()-1]);
-		System.out.println("Net Through: "  + (total_time - out[out.size()-1])/2);
+		System.out.println("Server time (ms): " + out[out.length-1]);
+		System.out.println("App Through: " + (((out.length-1)/out[out.length-1])*1000));
+		System.out.println("Net Through: "  + (total_time - out[out.length-1])/2);
     }
 
     public void shutdown() throws InterruptedException {
